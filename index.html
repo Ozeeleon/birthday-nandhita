@@ -256,7 +256,9 @@ function burstConfetti() {
 
 /* ── LOCK SYSTEM ── */
 const TARGET = new Date('2026-06-17T00:00:00');
-let isUnlocked = new Date() >= TARGET;
+const _p = new URLSearchParams(window.location.search);
+const isAdmin = _p.get('admin') === 'true' || _p.get('preview') === 'true';
+let isUnlocked = isAdmin || new Date() >= TARGET;
 
 function checkUnlock() {
   if (!isUnlocked && new Date() >= TARGET) {
@@ -368,3 +370,4 @@ function initTypewriter() {
 </script>
 </body>
 </html>
+
